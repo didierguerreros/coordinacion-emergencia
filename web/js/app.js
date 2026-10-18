@@ -6,7 +6,7 @@
 // ==================================================
 
 const API_EMERGENCIAS =
-    "https://api-emergencias-cm5kq6dcw-didier-guerrero1.vercel.app";
+    "https://api-emergencias-pvwwp0ajn-didier-guerrero1.vercel.app/";
 
 const API_UBICACION =
     "https://api-ubicacion-bw8y31f19-didier-guerrero1.vercel.app";
