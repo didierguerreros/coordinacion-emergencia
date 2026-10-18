@@ -6,10 +6,10 @@
 // ==================================================
 
 const API_EMERGENCIAS =
-    "https://api-emergencias-pvwwp0ajn-didier-guerrero1.vercel.app/";
+    "http://coordinacion-emergencia.vercel.app";
 
 const API_UBICACION =
-    "https://api-ubicacion-bw8y31f19-didier-guerrero1.vercel.app";
+    "https://api-ubicacion-kappa.vercel.app/";
 
 // Reemplaza este valor por tu clave restringida de Google Maps Embed API.
 const GOOGLE_MAPS_API_KEY =
