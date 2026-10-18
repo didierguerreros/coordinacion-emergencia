@@ -1,0 +1,231 @@
+
+/* ========================================
+   COORDINACIÓN DE EMERGENCIAS
+   Hoja de estilos principal
+   ======================================== */
+
+/* 1. Configuración general */
+
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --color-principal: #b91c1c;
+    --color-principal-hover: #991b1b;
+    --color-fondo: #f3f4f6;
+    --color-panel: #ffffff;
+    --color-texto: #1f2937;
+    --color-borde: #e5e7eb;
+    --color-exito: #166534;
+    --color-error: #b91c1c;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--color-fondo);
+    color: var(--color-texto);
+    line-height: 1.5;
+}
+
+/* 2. Encabezado */
+
+header {
+    background: var(--color-principal);
+    color: white;
+    padding: 24px;
+}
+
+header h1 {
+    margin: 0 0 8px;
+    font-size: 28px;
+}
+
+header p {
+    margin: 0;
+    opacity: 0.95;
+}
+
+/* 3. Contenido principal */
+
+main {
+    max-width: 1200px;
+    margin: 25px auto;
+    padding: 0 18px;
+}
+
+.panel {
+    background: var(--color-panel);
+    padding: 22px;
+    margin-bottom: 22px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px #00000010;
+}
+
+h2 {
+    margin-top: 0;
+    margin-bottom: 18px;
+    font-size: 22px;
+}
+
+/* 4. Tabla de emergencias */
+
+.tabla-contenedor {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 650px;
+}
+
+th,
+td {
+    padding: 13px;
+    border-bottom: 1px solid var(--color-borde);
+    text-align: left;
+}
+
+th {
+    background: #f9fafb;
+    font-weight: 700;
+}
+
+tbody tr:hover {
+    background: #f9fafb;
+}
+
+/* 5. Estado de las emergencias */
+
+.estado {
+    display: inline-block;
+    background: #fee2e2;
+    color: #991b1b;
+    padding: 5px 9px;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* 6. Botones */
+
+button {
+    background: var(--color-principal);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 15px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+button:hover {
+    background: var(--color-principal-hover);
+}
+
+button:focus-visible,
+a:focus-visible {
+    outline: 3px solid #2563eb;
+    outline-offset: 3px;
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+/* 7. Mensajes de consulta */
+
+#mensaje {
+    margin-bottom: 15px;
+}
+
+.error {
+    color: var(--color-error);
+}
+
+.exito {
+    color: var(--color-exito);
+}
+
+/* 8. Detalle de ubicación */
+
+#detalle-ubicacion {
+    line-height: 1.8;
+    margin-bottom: 16px;
+    overflow-wrap: anywhere;
+}
+
+#detalle-ubicacion strong {
+    color: #111827;
+}
+
+/* 9. Mapa de Google Maps */
+
+#google-map {
+    display: block;
+    width: 100%;
+    height: 420px;
+    border: 0;
+    border-radius: 10px;
+    background: #e5e7eb;
+}
+
+.enlace-mapa {
+    display: inline-block;
+    margin-top: 12px;
+    color: #1d4ed8;
+    text-decoration: underline;
+}
+
+.enlace-mapa:hover {
+    color: #1e40af;
+}
+
+/* 10. Pie de página */
+
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #6b7280;
+    font-size: 13px;
+}
+
+/* 11. Adaptación para tabletas y celulares */
+
+@media (max-width: 600px) {
+    header {
+        padding: 18px;
+    }
+
+    header h1 {
+        font-size: 23px;
+    }
+
+    main {
+        margin: 18px auto;
+        padding: 0 12px;
+    }
+
+    .panel {
+        padding: 15px;
+        border-radius: 9px;
+    }
+
+    h2 {
+        font-size: 19px;
+    }
+
+    #google-map {
+        height: 320px;
+    }
+
+    button {
+        max-width: 100%;
+    }
+}
