@@ -6,7 +6,7 @@
 // ==================================================
 
 const API_EMERGENCIAS =
-    "http://coordinacion-emergencia.vercel.app";
+    "https://coordinacion-emergencia.vercel.app";
 
 const API_UBICACION =
     "https://api-ubicacion-kappa.vercel.app/";
