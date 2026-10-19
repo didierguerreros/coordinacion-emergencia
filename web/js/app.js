@@ -1,4 +1,5 @@
 
+
 "use strict";
 
 // ==================================================
@@ -9,9 +10,10 @@ const API_EMERGENCIAS =
     "https://coordinacion-emergencia.vercel.app";
 
 const API_UBICACION =
-    "https://api-ubicacion-kappa.vercel.app/";
+    "https://api-ubicacion-kappa.vercel.app";
 
-// Reemplaza este valor por tu clave restringida de Google Maps Embed API.
+// Configura una clave restringida de Google Maps Embed API.
+// No publiques claves sin las restricciones correspondientes.
 const GOOGLE_MAPS_API_KEY =
     "AIzaSyDWU4P59uQdl3lKPcTYod7g3eWapAdxx5w";
 
@@ -65,7 +67,8 @@ async function consultarEmergencias() {
             fila.appendChild(celda);
             tabla.appendChild(fila);
 
-            mensaje.textContent = "Consulta completada. No hay reportes.";
+            mensaje.textContent =
+                "Consulta completada. No hay reportes.";
             mensaje.className = "exito";
             return;
         }
@@ -133,7 +136,8 @@ async function consultarEmergencias() {
         tabla.appendChild(fila);
 
         mensaje.textContent =
-            "No fue posible consultar la API de Emergencias. Verifica la conexión e inténtalo nuevamente.";
+            "No fue posible consultar la API de Emergencias. " +
+            "Verifica la conexión e inténtalo nuevamente.";
         mensaje.className = "error";
 
     } finally {
@@ -169,7 +173,7 @@ async function consultarUbicacion(idEmergencia) {
         if (!respuesta.ok) {
             if (respuesta.status === 404) {
                 throw new Error(
-                    "No se encontró la emergencia o la persona no tiene ubicación registrada."
+                    "No se encontró la emergencia o no tiene ubicación registrada."
                 );
             }
 
@@ -189,21 +193,17 @@ async function consultarUbicacion(idEmergencia) {
             );
         }
 
-        // La API debe devolver una lista llamada "ubicaciones".
-        if (!Array.isArray(ubicacion.ubicaciones)) {
+        // La API devuelve un objeto de ubicación, no una lista.
+        const ultimaUbicacion = ubicacion;
+
+        if (
+            ultimaUbicacion.latitud == null ||
+            ultimaUbicacion.longitud == null
+        ) {
             throw new Error(
-                "La respuesta de la API de Ubicación no contiene la lista esperada de ubicaciones."
+                "La respuesta no contiene las coordenadas de la ubicación."
             );
         }
-
-        if (ubicacion.ubicaciones.length === 0) {
-            throw new Error(
-                "La persona no tiene ubicaciones registradas."
-            );
-        }
-
-        // Se espera que la primera ubicación sea la más reciente.
-        const ultimaUbicacion = ubicacion.ubicaciones[0];
 
         const latitud = Number(ultimaUbicacion.latitud);
         const longitud = Number(ultimaUbicacion.longitud);
@@ -256,7 +256,7 @@ async function consultarUbicacion(idEmergencia) {
             detalle.appendChild(linea);
         });
 
-        // Enlace externo: funciona sin una clave de Google Maps.
+        // Enlace externo a Google Maps.
         const coordenadas = `${latitud},${longitud}`;
 
         enlace.href =
@@ -264,7 +264,7 @@ async function consultarUbicacion(idEmergencia) {
 
         enlace.hidden = false;
 
-        // Mapa integrado, si existe una clave configurada.
+        // Mapa integrado, si hay una clave configurada.
         if (
             GOOGLE_MAPS_API_KEY &&
             GOOGLE_MAPS_API_KEY !==
@@ -279,7 +279,8 @@ async function consultarUbicacion(idEmergencia) {
             const aviso = document.createElement("p");
 
             aviso.textContent =
-                "El mapa integrado requiere configurar Google Maps Embed API. Puedes abrir las coordenadas mediante el enlace de Google Maps.";
+                "El mapa integrado requiere configurar Google Maps Embed API. " +
+                "Puedes abrir las coordenadas mediante el enlace de Google Maps.";
 
             detalle.appendChild(aviso);
         }
